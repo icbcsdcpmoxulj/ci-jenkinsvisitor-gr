@@ -33,17 +33,19 @@ import org.apache.http.protocol.BasicHttpContext
 import org.apache.http.util.EntityUtils
 import org.apache.log4j.Logger
 
-import ci.xlj.libs.jenkinsvisitor.entity.BuildInfo;
-import ci.xlj.libs.jenkinsvisitor.entity.Job;
+import ci.xlj.libs.jenkinsvisitor.entity.BuildInfo
+import ci.xlj.libs.jenkinsvisitor.entity.Job
+import ci.xlj.libs.utils.DateUtils
+import ci.xlj.libs.utils.StringUtils
 
 class JenkinsVisitor {
 
-	private logger = Logger.getLogger(JenkinsVisitor)
+	private Logger logger = Logger.getLogger(JenkinsVisitor)
 
 
 	private serverUrl
 
-	private client
+	private DefaultHttpClient client
 	private context
 
 	private get
@@ -395,8 +397,10 @@ class JenkinsVisitor {
 		def jobJSON = doGet("${serverUrl}job/$jobName/api/json")
 
 		jobNameList = []
-
-		jobJSON.downstreamProjects.each{ jobNameList<<it.name }
+		
+		for(def project:jobJSON.downstreamProjects){ 
+			jobNameList<<project.name
+		}
 
 		return jobNameList
 	}
