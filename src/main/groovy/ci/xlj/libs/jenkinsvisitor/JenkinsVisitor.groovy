@@ -21,6 +21,7 @@ package ci.xlj.libs.jenkinsvisitor
 
 import groovy.json.JsonSlurper
 
+import org.apache.http.HttpResponse
 import org.apache.http.auth.AuthScope
 import org.apache.http.auth.UsernamePasswordCredentials
 import org.apache.http.client.methods.HttpGet
@@ -51,7 +52,7 @@ class JenkinsVisitor {
 	private get
 	private post
 
-	private response
+	private HttpResponse response
 	private entity
 	private responseContent=""
 
@@ -63,6 +64,8 @@ class JenkinsVisitor {
 	private encoding = "UTF-8"
 
 	private homePageJSON
+	
+	private int statusCode
 
 	/**
 	 * @param serverURL Server URL
@@ -277,7 +280,7 @@ class JenkinsVisitor {
 		return response.getStatusLine().getStatusCode()
 	}
 
-	private doPost(postUrl, postContent) {
+	def doPost(postUrl, postContent) {
 		post = new HttpPost(postUrl)
 		post.setHeader("Content-Type", "text/xml;charset=UTF-8")
 
@@ -287,6 +290,7 @@ class JenkinsVisitor {
 		}
 
 		response = client.execute(post, context)
+		statusCode=response.getStatusLine().getStatusCode()
 		entity = response.getEntity()
 		responseContent = getHtmlFromHttpEntity()
 
@@ -520,7 +524,15 @@ class JenkinsVisitor {
 
 		return result
 	}
-
+	
+	int getResponseStatusCode(){
+		return statusCode
+	}
+	
+	String getResponseContent(){
+		return responseContent
+	}
+	
 	/**
 	 * Parse HTTP Entity
 	 */
