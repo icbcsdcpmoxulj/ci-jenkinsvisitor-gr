@@ -39,6 +39,12 @@ import ci.xlj.libs.jenkinsvisitor.entity.Job
 import ci.xlj.libs.utils.DateUtils
 import ci.xlj.libs.utils.StringUtils
 
+/**
+ * This lib provides functionality of manipulating Jenkins Server,<br/>
+ * such as creating jobs, reading jobs' data, etc. 
+ *
+ * @author kfzx-xulj
+ */
 class JenkinsVisitor {
 
 	private Logger logger = Logger.getLogger(JenkinsVisitor)
@@ -68,7 +74,7 @@ class JenkinsVisitor {
 	private int statusCode
 
 	/**
-	 * @param serverURL Server URL
+	 * @param serverURL Jenkins Server URL
 	 */
 	JenkinsVisitor(serverURL) {
 		this.serverUrl = StringUtils.transformToUrl(serverURL)
@@ -280,7 +286,7 @@ class JenkinsVisitor {
 		return response.getStatusLine().getStatusCode()
 	}
 
-	def doPost(postUrl, postContent) {
+	void doPost(postUrl, postContent) {
 		post = new HttpPost(postUrl)
 		post.setHeader("Content-Type", "text/xml;charset=UTF-8")
 
