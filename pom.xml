@@ -17,7 +17,7 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
-	
+
 	<developers>
 		<developer>
 			<id>kfzx-xulj</id>
@@ -25,7 +25,7 @@
 			<email>icbcsdcpmoxulj@outlook.com</email>
 		</developer>
 	</developers>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -83,14 +83,21 @@
 			<artifactId>ci-utils</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<url>http://localhost:8081/nexus/content/repositories/my-repo/</url>
+		</repository>
+	</distributionManagement>
 
 </project>

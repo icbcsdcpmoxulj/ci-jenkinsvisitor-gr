@@ -3,7 +3,7 @@
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
+ * (the "License") you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  * 
  *      http://www.apache.org/licenses/LICENSE-2.0
@@ -17,112 +17,118 @@
 
 //      Contributors:      Xu Lijia
 
-package ci.xlj.libs.jenkinsvisitor.entity;
+package ci.xlj.libs.jenkinsvisitor.entity
 
-import java.util.HashMap;
-import java.util.Map;
 
 final class Job {
 
-	private String name;
+	private String name
 
-	private String url;
+	private String url
 
-	private boolean buildable;
+	private boolean buildable
 
-	private String color;
+	private String color
 
-	private boolean concurrentBuild;
+	private boolean concurrentBuild
 
-	private int nextBuildNum;
+	private int nextBuildNum
 
-	private int firstBuildNum;
+	private int firstBuildNum
 
-	private int lastBuildNum;
+	private int lastBuildNum
 
-	private int lastCompletedBuildNum;
+	private int lastCompletedBuildNum
 
-	private int lastFailedBuildNum;
+	private int lastFailedBuildNum
 
-	private int lastStableBuildNum;
+	private int lastStableBuildNum
 
-	private int lastUnstableBuildNum;
+	private int lastUnstableBuildNum
 
-	private int lastSuccessfulBuildNum;
+	private int lastSuccessfulBuildNum
 
-	private int lastUnsuccessfulBuildNum;
+	private int lastUnsuccessfulBuildNum
 
-	private Map<Integer, BuildInfo> buildHistory = new HashMap<Integer, BuildInfo>();
+	private Map<Integer, BuildInfo> buildHistory = new HashMap<Integer, BuildInfo>()
 
 	Job(name) {
-		this.name = name;
+		this.name = name
+	}
+
+	String getName(){
+		return name
+	}
+
+	String getColor(){
+		return color
 	}
 
 	def getFirstBuildInfo() {
 		if (firstBuildNum != -1) {
-			return buildHistory.get(firstBuildNum);
+			return buildHistory.get(firstBuildNum)
 		} else {
-			return null;
+			return null
 		}
 	}
 
 	def getLastBuildInfo() {
 		if (lastBuildNum != -1) {
-			return buildHistory.get(lastBuildNum);
+			return buildHistory.get(lastBuildNum)
 		} else {
-			return null;
+			return null
 		}
 	}
 
 	def getLastCompletedBuildInfo() {
 		if (lastCompletedBuildNum != -1) {
-			return buildHistory.get(lastCompletedBuildNum);
+			return buildHistory.get(lastCompletedBuildNum)
 		} else {
-			return null;
+			return null
 		}
 	}
 
 	def getLastFailedBuildInfo() {
 		if (lastFailedBuildNum != -1) {
-			return buildHistory.get(lastFailedBuildNum);
+			return buildHistory.get(lastFailedBuildNum)
 		} else {
-			return null;
+			return null
 		}
 	}
 
 	def getLastStableBuildInfo() {
 		if (lastStableBuildNum != -1) {
-			return buildHistory.get(lastStableBuildNum);
+			return buildHistory.get(lastStableBuildNum)
 		} else {
-			return null;
+			return null
 		}
 	}
 
 	def getLastSuccessfulBuildInfo() {
 		if (lastSuccessfulBuildNum != -1) {
-			return buildHistory.get(lastSuccessfulBuildNum);
+			return buildHistory.get(lastSuccessfulBuildNum)
 		} else {
-			return null;
+			return null
 		}
 	}
 
 	def getLastUnstableBuildInfo() {
 		if (lastUnstableBuildNum != -1) {
-			return buildHistory.get(lastUnstableBuildNum);
+			return buildHistory.get(lastUnstableBuildNum)
 		} else {
-			return null;
+			return null
 		}
 	}
 
 	def getLastUnsuccessfulBuildInfo() {
 		if (lastUnsuccessfulBuildNum != -1) {
-			return buildHistory.get(lastUnsuccessfulBuildNum);
+			return buildHistory.get(lastUnsuccessfulBuildNum)
 		} else {
-			return null;
+			return null
 		}
 	}
 
 	void addBuildInfo(buildNum, buildInfo) {
-		this.buildHistory.put(buildNum, buildInfo);
+		this.buildHistory.put(buildNum, buildInfo)
 	}
 }
